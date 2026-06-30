@@ -44,6 +44,10 @@ return {
 			["clang-format"] = {
 				prepend_args = { "-style=file", "-fallback-style=LLVM" },
 			},
+			-- Wrap markdown prose at 80 chars; prettier leaves tables intact.
+			prettier = {
+				prepend_args = { "--prose-wrap", "always" },
+			},
 		},
 	},
 }
