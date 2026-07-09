@@ -5,25 +5,38 @@ Personal Neovim config.
 ## Prerequisites
 
 Install **before** first launch. mason auto-installs the language _servers_, but
-needs the host runtimes below; two formatters are **not** mason-managed.
+needs the host runtimes below; the formatters are **not** mason-managed.
 
-**Core (required):**
+### macOS
 
-- **Neovim ≥ 0.11** (uses `vim.lsp.config`)
-- **git**
-- **C compiler + make** (`cc`/`clang`/`gcc`) — builds treesitter parsers & LuaSnip regex
+```sh
+# Build tools — cc + make for treesitter parsers & LuaSnip (via Xcode CLT)
+xcode-select --install
 
-**Formatters (required for formatting; not installed by mason):**
+# Editor + git
+brew install neovim git
 
-- **stylua** — Lua (`cargo install stylua` / `brew install stylua`)
-- **clang-format** — C/C++ (`brew install clang-format`)
+# Formatters (not mason-managed) + shellcheck for bashls diagnostics
+brew install stylua clang-format shfmt shellcheck
 
-**Per-language runtimes (only for the languages you use):**
+# Language runtimes — Node (TS/JS/JSON + prettier), Go, Rust, Ruby
+brew install node go rust ruby
+```
 
-- **Node.js + npm** — TS/JS/JSON servers & prettier
-- **Go** — gopls (gofmt included)
-- **Rust** (rustup: cargo, rustfmt) — rust-analyzer; also fff.nvim build fallback
-- **Ruby** — ruby-lsp
+### Fedora
+
+```sh
+# Editor, git, build tools, and language runtimes
+sudo dnf install neovim git gcc make nodejs npm golang rust cargo ruby
+
+# Formatters + shellcheck for bashls diagnostics (stylua not packaged → cargo)
+sudo dnf install clang-tools-extra shfmt ShellCheck
+cargo install stylua
+```
+
+Requires **Neovim ≥ 0.11** (uses `vim.lsp.config`). Language servers
+(rust-analyzer, gopls, ts_ls, etc.) install automatically via mason on first
+launch.
 
 ## Install
 

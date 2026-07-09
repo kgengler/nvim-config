@@ -39,6 +39,8 @@ return {
 			json = { "prettier" },
 			jsonc = { "prettier" },
 			markdown = { "prettier" },
+			sh = { "shfmt" },
+			bash = { "shfmt" },
 		},
 		formatters = {
 			["clang-format"] = {

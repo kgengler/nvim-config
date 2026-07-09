@@ -67,6 +67,7 @@ return {
 				"clangd",
 				"jsonls",
 				"ruby_lsp",
+				"bashls",
 			},
 		})
 

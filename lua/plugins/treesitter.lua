@@ -18,6 +18,7 @@ return {
 				"c",
 				"cpp",
 				"ruby",
+				"bash",
 				"markdown",
 				"markdown_inline",
 			}
