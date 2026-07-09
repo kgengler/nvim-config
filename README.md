@@ -1,42 +1,39 @@
 # nvim
 
-Personal Neovim config.
+Personal Neovim config. Requires **Neovim ≥ 0.11** (uses `vim.lsp.config`).
 
 ## Prerequisites
 
-Install **before** first launch. mason auto-installs the language _servers_, but
-needs the host runtimes below; the formatters are **not** mason-managed.
+Install everything below **before** first launch. mason auto-installs language
+_servers_ (rust-analyzer, gopls, ts_ls, …) but needs the host runtimes; the
+formatters are **not** mason-managed.
+
+Runtimes are managed with [mise](https://mise.jdx.dev); Rust via
+[rustup](https://rustup.rs). After installing mise, add the runtimes:
+
+```sh
+mise use -g go@latest node@lts ruby@3.2.4   # Go, Node (TS/JS/JSON + prettier), Ruby
+```
+
+Activate mise in your shell (`mise activate`) so the runtimes are on `PATH`.
 
 ### macOS
 
 ```sh
-# Build tools — cc + make for treesitter parsers & LuaSnip (via Xcode CLT)
-xcode-select --install
-
-# Editor + git
-brew install neovim git
-
-# Formatters (not mason-managed) + shellcheck for bashls diagnostics
-brew install stylua clang-format shfmt shellcheck
-
-# Language runtimes — Node (TS/JS/JSON + prettier), Go, Rust, Ruby
-brew install node go rust ruby
+xcode-select --install                          # cc + make (treesitter, LuaSnip)
+brew install neovim git mise                     # editor, git, runtime manager
+brew install stylua clang-format shfmt shellcheck # formatters + bashls diagnostics
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh  # Rust
 ```
 
 ### Fedora
 
 ```sh
-# Editor, git, build tools, and language runtimes
-sudo dnf install neovim git gcc make nodejs npm golang rust cargo ruby
-
-# Formatters + shellcheck for bashls diagnostics (stylua not packaged → cargo)
-sudo dnf install clang-tools-extra shfmt ShellCheck
-cargo install stylua
+sudo dnf install neovim git gcc make mise                # editor, git, build tools
+sudo dnf install clang-tools-extra shfmt ShellCheck      # formatters + bashls diagnostics
+cargo install stylua                                     # stylua (not packaged)
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh  # Rust
 ```
-
-Requires **Neovim ≥ 0.11** (uses `vim.lsp.config`). Language servers
-(rust-analyzer, gopls, ts_ls, etc.) install automatically via mason on first
-launch.
 
 ## Install
 
@@ -45,7 +42,7 @@ git clone git@github.com:kgengler/nvim-config.git ~/.config/nvim
 nvim   # lazy.nvim bootstraps; mason installs servers on first run
 ```
 
-Then `:checkhealth` and `:Mason` to confirm tooling.
+Run `:checkhealth` and `:Mason` to confirm tooling.
 
 ## Keys
 
