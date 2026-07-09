@@ -23,7 +23,10 @@ require("lazy").setup({
 	},
 
 	-- automatically check for plugin updates
-	checker = { enabled = true },
+	checker = {
+		enabled = false,
+		notify = false,
+	},
 
 	-- No installed plugins require luarocks; disable it to silence the
 	-- hererocks/luarocks bootstrap errors in :checkhealth lazy.
